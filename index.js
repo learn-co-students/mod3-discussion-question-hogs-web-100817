@@ -18,6 +18,7 @@ function fadeIn(el) {
 }
 
 function transitionPage(el, groupOut, groupIn) {
+  // debugger;
   fadeAllOut(el, groupOut)
   setTimeout(() => {
     fadeAllIn(groupIn)
@@ -25,26 +26,29 @@ function transitionPage(el, groupOut, groupIn) {
 }
 /*************************************************************************/
 
-function delayedFadeOut(div, range) {
-  // You're solution here
-  fadeOut(div)
+function delayedFadeOut(div, range, min=0) {
+  setTimeout(() => {
+      fadeOut(div)
+    }, Math.random() * range + min)
 }
 
-function delayedFadeIn(div, range) {
-  // You're solution here
-  fadeIn(div)
+
+function delayedFadeIn(div, range, min=0) {
+  setTimeout(() => {
+    fadeIn(div)
+  }, Math.random() * range + min)
 }
 
-function fadeAllOut(el, group) {
-  // You're solution here
+function fadeAllOut(el, group, min=0) {
   group.forEach(div => {
-    delayedFadeOut(div)
+    if (div !== el)
+      delayedFadeOut(div, SHORTRANGE)
   })
+  delayedFadeOut(el, LONGRANGE)
 }
 
 function fadeAllIn(group) {
-  // You're solution here
   group.forEach(div => {
-    delayedFadeIn(div)
+    delayedFadeIn(div, SHORTRANGE)
   })
 }
